@@ -1,0 +1,58 @@
+﻿G:\Dropbox\Записи\Тетради\4 семестр\Разработка программных приложений\Лаба 1>java Calc_Test
+step 1
+step 1.1
+addFloat: ok
+add: ok
+add: ok
+add: ok
+step 1.2
+subFloat: ok
+sub: ok
+sub: ok
+sub: ok
+step 1.3
+mulFloat: ok
+mul: ok
+mul: ok
+mul: ok
+step 1.4
+divFloat: ok
+div: ok
+Error: div on zero: ok. Error log: / by zero
+div on zero: ok. Error log: / by zero
+div: ok
+step 2
+step 2.1
+addFloat: ok
+addFloat: ok
+addFloat: ok
+addFloat: ok
+add: ok
+add: ok
+add: ok
+step 2.2
+subFloat: ok
+subFloat: ok
+subFloat: ok
+subFloat: ok
+sub: ok
+sub: ok
+sub: ok
+step 2.3
+mulFloat: ok
+mulFloat: ok
+mulFloat: ok
+mulFloat: ok
+mul: ok
+mul: ok
+mul: ok
+step 2.4
+divFloat: ok
+divFloat: ok
+divFloat: ok
+divFloat: ok
+div: ok
+Error: div on zero: ok. Error log: / by zero
+div on zero: ok. Error log: / by zero
+div: ok
+end.
