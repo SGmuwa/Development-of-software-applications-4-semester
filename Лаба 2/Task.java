@@ -1,10 +1,11 @@
 ﻿public class Task {
 	private int id;
 	private boolean isIdSet;
-	public final Date date;
-	public final String city;
-	private String weather;
+	public final WeatherPoint weatherPointEditor; // weatherPoint. Точка во времени и пространстве, а также хранит информацию о погоде.
 
+	// Устанавливает идентификатор к заданию. Изменить идентификатор можно только один раз.
+	// int id: присваеваемый идентификатор.
+	// Возвращает: True, если операция принята и успешно завершена. False, если операция не разрешена и откланена.
 	public boolean setId(int id) {
 		if(isIdSet == false) {
 			this.isIdSet = true;
@@ -17,19 +18,10 @@
 	public int getId() {
 		return id;
 	}
-
-	public setWeather(String weather) {
-		this.weather = weather;
-	}
-
-	public Weather getWeather() {
-		return weather;
-	}
 	
 	public Task(Date date, String city) {
-		this.id = 0;
+		this.id = -1;
 		this.isIdSet = false;
-		this.date = date;
-		this.city = city;
+		this.wp = new WeatherPoint(date, city);
 	}
 }

@@ -3,6 +3,7 @@
 public class TaskGenerator {
 	private String[] city;
 	
+	// Конструктор. В него следует передать список городов, которые поддерживаются WeatherConveyer
 	TaskGenerator(String[] city) {
 		this.city = city.clone();
 	}

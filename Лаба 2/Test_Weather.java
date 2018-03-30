@@ -1,6 +1,8 @@
 ﻿public class Test_Weather {
 	
-	// Отправить информацию пользователю.
+	// Отправить информацию на консоль.
+	// boolean isStatusGood: True, если всё идёт по-плану. False, если произошла ошибка.
+	// String message: Текст сообщения.
 	public static void log(boolean isStatusGood, String message) {
 		if(isStatusGood)
 			System.out.println(message + " ok.");
@@ -14,12 +16,13 @@
 	{
 		log(true, "Test started."); // Начало тестирования
 		
-		int countElms = 100; // количество тестируемых элементов
+		int countElms = 100; // количество тестируемых элементов.
 
-		if(isTaskGeneratorRandomize() && isTaskGeneratorRandomize()) log(true, "TaskGenerator: IsRandomize"); // Проверяем, что задачи наши не одни и те же.
+		if(isTaskGeneratorRandomize() && isTaskGeneratorRandomize())
+			log(true, "TaskGenerator: IsRandomize"); // Проверяем, что задачи наши не одни и те же.
 		else log(false, "TaskGenerator: Not randomize"); // В случае, если есть схожести, пишем об этом.
 		
-		String[] citys = new String[] {
+		String[] сities = new String[] {
 			"Самара", "Тольятти"
 		};
 
@@ -80,22 +83,29 @@
 		
 	}
 
+	// Отвечает на вопрос, рандомно ли генерируются задачи из экземпляра TaskGenerator.
+	// Возвращает: True, если всё работает верно и данные действительно рандомны. False, если произошла ошибка.
 	public boolean isTaskGeneratorRandomize()
 	{
-		TaskGenerator tg = new TaskGenerator();
+		TaskGenerator tg = new TaskGenerator(); // Создание экземпляра генератора
+		// Генерирование задач:
 		Task[] tsk = new Task[] {tg.getTask(), tg.getTask(), tg.getTask(), tg.getTask(), tg.getTask()};
-		if(tg.getCountReady() == tsk.length)
+		
+		if(tg.getCountReady() == tsk.length) // Проверяем, что количество верно.
 			log(true, "isTaskGeneratorRandomize: tg.getCountReady() == tsk.length ==" + tsk.length);
 		else
 			log(false, "isTaskGeneratorRandomize: tg.getCountReady() (" + tg.getCountReady() + ") != tsk.length (" + tsk.length + ").");
+		// Проверяем, чтобы они не совпадали.
 		for(long i = 0; i < tsk.length - 1; i++)
 		{
 			for(long j = i + 1; j < tsk.length; j++)
 			{
 				if(i == j) continue;
-				if(!tsk[i].equals(tsk[j])) return false;
+				if(tsk[i].equals(tsk[j])) // Если нашлась индентичная пара, то
+					return false; // отвечаем, что TaskGenerator работает не верно.
 			}
 		}
-		return true;
+		// Если такой пары не существует, то всё работает верно.
+		return true; 
 	}
 }
