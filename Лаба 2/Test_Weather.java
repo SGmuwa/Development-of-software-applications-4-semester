@@ -28,7 +28,7 @@
 			"Самара", "Тольятти"
 		};
 
-		TaskGenerator tasks = new TaskGenerator(); // Готовим генератор задач к работе.
+		TaskGenerator tasks = new TaskGenerator(сities); // Готовим генератор задач к работе.
 
 		WeatherConveyer wc = new WeatherConveyer(); // Готовим основной конвеер к работе.
 		

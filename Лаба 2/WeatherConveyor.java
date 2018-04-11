@@ -7,6 +7,7 @@
 		queueOutbox = new ConcurrentLinkedQueueTask();
 	}
 	
+	HashMap<K, V>
 	
 	// Делает шаг.
 	public void stepGetWeatherFromInboxToOutbox()
