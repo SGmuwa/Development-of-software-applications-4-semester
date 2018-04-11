@@ -1,4 +1,4 @@
-﻿class WeatherPoint {
+﻿class WeatherPoint implements Serializable {
 	public final Point point;
 	public final Weather weather;
 	

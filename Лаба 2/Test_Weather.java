@@ -67,7 +67,11 @@
 		else
 			log(false, "queueInbox.count = " + wc.queueOutbox.count);
 
-		wc.startGetWeatherFromInboxToOutbox(); // Начать высчитывать в ассинхронном режиме.
+		Thread zds[] = new Thread[3];
+		for( Thread zd : zds)
+			zd = new Thread(wc);
+		for( Thread zd : zds)
+			zd.start(); // Начать высчитывать в ассинхронном режиме.
 		
 		Thread.sleep(100); // wait 100ms
 
@@ -82,7 +86,6 @@
 			log(true, "wc.queueOutbox.size() == 0");
 		else
 			log(false, "wc.queueOutbox.size() == " + wc.queueOutbox.size());
-		
 	}
 
 	// Отвечает на вопрос, рандомно ли генерируются задачи из экземпляра TaskGenerator.

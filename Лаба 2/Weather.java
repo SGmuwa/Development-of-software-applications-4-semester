@@ -1,5 +1,6 @@
 ﻿// Класс, который реализует контейнер для погоды. Его задача: позволить ожидать команды записи погоды. После записи запретить дальнейшние изменения погоды.
-class Weather {
+class Weather implements Serializable {
+	
 	private boolean weatherChange; // Значение погоды менялось?
 	private String weather;
 
@@ -19,8 +20,7 @@ class Weather {
 	
 	public
 	synchronized // По плану сюда и не будут забегать сразу несколько потоков. Но для защиты добавлено это ключевое слово.
-	boolean
-	setWeather(String weather) {
+	boolean setWeather(String weather) {
 		if(weatherChange == false)
 		{
 			this.weatherChange = true;

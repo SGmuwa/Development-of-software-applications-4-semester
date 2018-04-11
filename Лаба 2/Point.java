@@ -1,4 +1,5 @@
-﻿class Point {
+﻿// Класс реализует хранение точки во времени и пространстве.
+class Point implements Serializable {
 	public final Date date;
 	public final String city;
 
