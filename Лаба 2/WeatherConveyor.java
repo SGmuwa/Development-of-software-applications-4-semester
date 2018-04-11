@@ -1,6 +1,33 @@
 ﻿public class WeatherConveyor implements Runnable {
 	
 	
+	public WeatherConveyor()
+	{
+		queueInbox = new ConcurrentLinkedQueueTask();
+		queueOutbox = new ConcurrentLinkedQueueTask();
+	}
+	
+	
+	// Делает шаг.
+	public void stepGetWeatherFromInboxToOutbox()
+	{
+		queueOutbox.push(
+			getWeather(
+				queueOutbox.pop()
+			)
+		);
+	}
+	
+	// Функция ищит соответсвие погоды по запросу.
+	private Task getWeather(Task input)
+	{
+		
+	}
+	
+	
+	ConcurrentLinkedQueueTask queueInbox;
+	ConcurrentLinkedQueueTask queueOutbox;
+	
 	public void run() {
 		//
 	}
@@ -9,18 +36,4 @@
 	public String[] getCities() {
 		
 	}
-
-//-------------------------
-
-	public class ConcurrentLinkedQueueTask extends ConcurrentLinkedQueue<Task> {
-		private int id = 0;
-		
-		// Добавляет элемент в очередь
-		@Override
-		public boolean add(Task e) {
-			e.setId(id++);
-			return super.add(e);
-		}
-	}
-//------------------------------
 }

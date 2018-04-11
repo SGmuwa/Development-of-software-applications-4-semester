@@ -3,10 +3,12 @@
 	// Отправить информацию на консоль.
 	// boolean isStatusGood: True, если всё идёт по-плану. False, если произошла ошибка.
 	// String message: Текст сообщения.
-	public static void log(boolean isStatusGood, String message) {
+	public static void log(boolean isStatusGood, String message)
+	{
 		if(isStatusGood)
 			System.out.println(message + " ok.");
-		else {
+		else
+		{
 			System.out.println("Error: " + message);
 			System.err.println(message);
 		}
