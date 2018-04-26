@@ -1,22 +1,22 @@
-﻿// Класс, который реализует контейнер для погоды. Его задача: позволить ожидать команды записи погоды. После записи запретить дальнейшние изменения погоды.
+
+import java.io.Serializable;
+
+// Класс, который реализует контейнер для погоды. Его задача: позволить ожидать команды записи погоды. После записи запретить дальнейшние изменения погоды.
 class Weather implements Serializable {
 	
 	private boolean weatherChange; // Значение погоды менялось?
 	private String weather;
 
 	
-	Weather(String weather = null)
+	Weather(String weather)
 	{
-		this.weather = weather;
-		if(weather == null || weather.equals(""))
-		{
-			this.weatherChange = false;
-		}
-		else
-		{
-			this.weatherChange = true;
-		}
+            Builder(weather);
 	}
+        
+        Weather()
+        {
+            Builder(null);
+        }
 	
 	public
 	synchronized // По плану сюда и не будут забегать сразу несколько потоков. Но для защиты добавлено это ключевое слово.
@@ -30,7 +30,21 @@ class Weather implements Serializable {
 		else return false;
 	}
 
-	public Weather getWeather() {
+	public String getWeather() {
 		return weather;
 	}
+        
+        
+        private void Builder(String weather)
+        {
+            this.weather = weather;
+            if(weather == null || weather.equals(""))
+            {
+		this.weatherChange = false;
+            }
+            else
+            {
+		this.weatherChange = true;
+            }
+        }
 }

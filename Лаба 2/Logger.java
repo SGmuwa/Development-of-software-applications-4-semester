@@ -1,11 +1,12 @@
+
+import static java.sql.DriverManager.println;
+
 // Класс, который печатает выходные танные.
 public class Logger {
 	// ConcurrentLinkedQueue<Task>
 
-	public static void printTasksAndClear(Collection<Task> input)
-	{
+	public static void printTasksAndClear(Iterable<Task> input) {
 		for(Task elm : input)
-			println("id: " + elm.getId() + ", city: " + elm.city + ", date: " + elm.date.toString() + ", weather: " + elm.getWeather());
-		input.clear();
+			println(elm.toString());
 	}
 }

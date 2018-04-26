@@ -1,4 +1,4 @@
-﻿public class Test_Weather {
+public class Test_Weather {
 	
 	// Отправить информацию на консоль.
 	// boolean isStatusGood: True, если всё идёт по-плану. False, если произошла ошибка.
@@ -55,7 +55,7 @@
 			return;
 		}
 		
-		wc.stepGetWeatherFromInboxToOutbox(); // Выполняем один шаг.
+		wc.step(); // Выполняем один шаг.
 
 		if(wc.queueOutbox.size() == 1) // Проверяем, что в выходной очереди действительно оказался 1 элемент.
 			log(true, "queueOutbox.count = 1");
@@ -90,7 +90,7 @@
 
 	// Отвечает на вопрос, рандомно ли генерируются задачи из экземпляра TaskGenerator.
 	// Возвращает: True, если всё работает верно и данные действительно рандомны. False, если произошла ошибка.
-	public boolean isTaskGeneratorRandomize()
+	public static boolean isTaskGeneratorRandomize()
 	{
 		TaskGenerator tg = new TaskGenerator(); // Создание экземпляра генератора
 		// Генерирование задач:

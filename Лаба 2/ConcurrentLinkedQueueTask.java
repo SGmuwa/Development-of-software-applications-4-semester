@@ -1,4 +1,7 @@
-﻿public class ConcurrentLinkedQueueTask extends ConcurrentLinkedQueue<Task> {
+
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+public class ConcurrentLinkedQueueTask extends ConcurrentLinkedQueue<Task> {
 	private int id = 0;
 	
 	// Добавляет элемент в очередь
