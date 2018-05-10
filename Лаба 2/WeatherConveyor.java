@@ -19,12 +19,14 @@ public class WeatherConveyor implements Runnable, AutoCloseable {
     }
 
     // Загрузка базы данных из файла
-    private void loadDataBase() throws FileNotFoundException, IOException {
-        FileInputStream fis = new FileInputStream(FileName);
-        ObjectInputStream oin = new ObjectInputStream(fis);
-        dataBase = (HashMap<Point, Weather>) oin.readObject();
-        oin.close();
-        fis.close();
+    private void loadDataBase()  {
+        try (FileInputStream fis = new FileInputStream(FileName); ObjectInputStream oin = new ObjectInputStream(fis)) {
+            dataBase = (HashMap<Point, Weather>) oin.readObject();
+        } 
+        catch(Exception e)
+        {
+            dataBase = new HashMap<>();
+        }
     }
 
     // Сохранение базы данных в файл
@@ -32,12 +34,12 @@ public class WeatherConveyor implements Runnable, AutoCloseable {
         if (input == null) {
             return;
         }
-        FileOutputStream fos = new FileOutputStream(FileName);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(input);
-        oos.flush();
-        oos.close();
-        fos.close();
+        try (FileOutputStream fos = new FileOutputStream(FileName)) {
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(input);
+            oos.flush();
+            oos.close();
+        }
     }
 
     // Делает шаг.
@@ -66,8 +68,10 @@ public class WeatherConveyor implements Runnable, AutoCloseable {
     ConcurrentLinkedQueueTask queueInbox;
     ConcurrentLinkedQueueTask queueOutbox;
 
+    @Override
     public void run() {
-        while (!Thread.IsInterrupted()) {
+        
+        while (!Thread.currentThread().isInterrupted()) {
             step();
         }
     }

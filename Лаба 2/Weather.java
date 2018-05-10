@@ -29,6 +29,16 @@ class Weather implements Serializable {
 		}
 		else return false;
 	}
+        
+        boolean setWeather(Weather weather) {
+		if(weatherChange == false)
+		{
+			this.weatherChange = true;
+			this.weather = weather.getWeather();
+			return true;
+		}
+		else return false;
+	}
 
 	public String getWeather() {
 		return weather;
