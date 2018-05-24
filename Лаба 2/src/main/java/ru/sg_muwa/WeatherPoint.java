@@ -2,7 +2,7 @@ package ru.sg_muwa;
 
 import java.io.Serializable;
 
-class WeatherPoint implements Serializable {
+public class WeatherPoint implements Serializable {
 	public final Point point;
 	public final Weather weather;
 	
@@ -14,6 +14,6 @@ class WeatherPoint implements Serializable {
         
         @Override
         public String toString() {
-            return "Point: {" + point.toString() + "} weather: " + weather;
+            return "Point: {" + point.toString() + "} weather: {" + weather.toString() + "}";
         }
 }

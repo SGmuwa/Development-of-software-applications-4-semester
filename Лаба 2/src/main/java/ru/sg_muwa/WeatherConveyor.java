@@ -25,13 +25,17 @@ public class WeatherConveyor implements Runnable, AutoCloseable, Iterable<Task>,
     HashMap<Point, Weather> dataBase;
 
     public void addData(Point point, Weather weather) {
-        dataBase.putIfAbsent(point, weather);
+        if(dataBase.get(point) == null)
+            dataBase.put(point, weather);
+        //dataBase.putIfAbsent(point, weather);
     }
 
     // Загрузка базы данных из файла
     private void loadDataBase()  {
         try (FileInputStream fis = new FileInputStream(FileName); ObjectInputStream oin = new ObjectInputStream(fis)) {
             dataBase = (HashMap<Point, Weather>) oin.readObject();
+            System.out.println("++++" + dataBase.size());
+            Logger.printTasksAndClear(dataBase.keySet());
         }
         catch(Exception e)
         {
@@ -44,7 +48,7 @@ public class WeatherConveyor implements Runnable, AutoCloseable, Iterable<Task>,
         if (input == null) {
             return;
         }
-        try (FileOutputStream fos = new FileOutputStream(FileName)) {
+        try (FileOutputStream fos = new FileOutputStream(FileName, false)) {
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(input);
             oos.flush();

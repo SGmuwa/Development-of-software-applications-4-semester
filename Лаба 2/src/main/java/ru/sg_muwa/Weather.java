@@ -42,6 +42,10 @@ public class Weather implements Serializable {
 
     private void Builder(String weather) {
         this.weather = weather;
-        this.weatherChange = weather == null || weather.equals("");
+        this.weatherChange = weather != null && !weather.equals("");
+    }
+
+    public String toString() {
+        return "Weather: " + this.weather + ", weatherChange: " + this.weatherChange + "";
     }
 }

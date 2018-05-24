@@ -54,3 +54,4 @@ fabric.properties
 
 # SG_Muwa
 target/
+*.bin

@@ -1,6 +1,7 @@
 import org.junit.Test;
 import ru.sg_muwa.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
@@ -20,10 +21,21 @@ public class Test_Weather {
 		System.out.println(message);
 	}
 
-	public void addDefaultData()
+	public void addDefaultData(String FileName)
     {
-        try(WeatherConveyor wc = new WeatherConveyor("WeatherConveyor.bin")) {
-            wc.addData(new Point(LocalDate.of(2018, 1, 1), "Moscow"), new Weather("-30, снег"));
+        try(WeatherConveyor wc = new WeatherConveyor(FileName)) {
+            wc.addData(new Point(LocalDate.of(2018, 1, 1), "Moscow"), new Weather("-30, snow"));
+			wc.addData(new Point(LocalDate.of(2018, 1, 2), "Moscow"), new Weather("-32, sun"));
+			wc.addData(new Point(LocalDate.of(2018, 1, 3), "Moscow"), new Weather("-26, cloud"));
+			wc.addData(new Point(LocalDate.of(2018, 1, 4), "Moscow"), new Weather("-18, sun"));
+			wc.addData(new Point(LocalDate.of(2018, 1, 5), "Moscow"), new Weather("-22, sun"));
+			wc.addData(new Point(LocalDate.of(2018, 1, 6), "Moscow"), new Weather("-21, cloud"));
+			wc.addData(new Point(LocalDate.of(2018, 1, 7), "Moscow"), new Weather("-20, cloud"));
+			wc.addData(new Point(LocalDate.of(2018, 1, 8), "Moscow"), new Weather("-22, snow"));
+			wc.addData(new Point(LocalDate.of(2018, 1, 9), "Moscow"), new Weather("-20, snow"));
+			wc.addData(new Point(LocalDate.of(2018, 1, 10), "Moscow"), new Weather("-19, snow"));
+			wc.addData(new Point(LocalDate.of(2018, 1, 11), "Moscow"), new Weather("-19, rain"));
+			wc.addData(new Point(LocalDate.of(2018, 1, 11), "Moscow"), new Weather("-20, sun"));
         }
         catch (IOException e)
         {
@@ -37,7 +49,7 @@ public class Test_Weather {
 
         String FileName = "WeatherConveyor.bin";
 
-		addDefaultData();
+		addDefaultData(FileName);
 
 		int countElms = 100; // количество тестируемых элементов.
 
@@ -68,6 +80,11 @@ public class Test_Weather {
 		else
 			log(false, "queueInbox.count = " + wc.sizeQueueInbox());
 
+		if (wc.pollFromQueueOutbox().weatherPointEditor.weather.getWeather() != null)
+			log(true, "weather find.");
+		else
+			log(false, "weather not find.");
+
 		Thread zds[] = new Thread[3];
 		for(int i = 0; i < zds.length; i++) zds[i] = new Thread(wc);
 		for( Thread zd : zds)
@@ -78,7 +95,7 @@ public class Test_Weather {
                 java.util.logging.Logger.getLogger(Test_Weather.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-		if(wc.sizeQueueOutbox() == countElms) // Проверяем, что вся выходная очередь заполнена.
+		if(wc.sizeQueueOutbox() == countElms - 1) // Проверяем, что вся выходная очередь заполнена.
 			log(true, "queueOutbox.count = " + wc.sizeQueueOutbox());
 		else 
 			log(false, "queueOutbox.count = " + wc.sizeQueueOutbox());
