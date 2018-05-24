@@ -6,13 +6,14 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.function.Consumer;
 
-public class WeatherConveyor implements Runnable, AutoCloseable, Iterable<Task> {
+public class WeatherConveyor implements Runnable, AutoCloseable, Iterable<Task>, Iterator<Task> {
 
-    private static final String FileName = "WeatherConveyor.bin";
+    private String FileName;
 
-    public WeatherConveyor() {
+    public WeatherConveyor(String FileName) {
         queueInbox = new ConcurrentLinkedQueueTask();
         queueOutbox = new ConcurrentLinkedQueueTask();
+        this.FileName = FileName;
         loadDataBase();
     }
 
@@ -23,15 +24,15 @@ public class WeatherConveyor implements Runnable, AutoCloseable, Iterable<Task> 
     
     HashMap<Point, Weather> dataBase;
 
-    public void AddData(Point point, Weather weather) {
-        dataBase.put(point, weather);
+    public void addData(Point point, Weather weather) {
+        dataBase.putIfAbsent(point, weather);
     }
 
     // Загрузка базы данных из файла
     private void loadDataBase()  {
         try (FileInputStream fis = new FileInputStream(FileName); ObjectInputStream oin = new ObjectInputStream(fis)) {
             dataBase = (HashMap<Point, Weather>) oin.readObject();
-        } 
+        }
         catch(Exception e)
         {
             dataBase = new HashMap<>();
@@ -39,7 +40,7 @@ public class WeatherConveyor implements Runnable, AutoCloseable, Iterable<Task> 
     }
 
     // Сохранение базы данных в файл
-    private static void saveDataBase(HashMap<Point, Weather> input) throws FileNotFoundException, IOException {
+    private void saveDataBase(HashMap<Point, Weather> input) throws FileNotFoundException, IOException {
         if (input == null) {
             return;
         }
@@ -53,7 +54,7 @@ public class WeatherConveyor implements Runnable, AutoCloseable, Iterable<Task> 
 
     // Делает шаг.
     public void step() {
-        Task buffer = getWeather(queueOutbox.poll());
+        Task buffer = getWeather(queueInbox.poll());
         if (buffer != null) {
             queueOutbox.add(buffer);
         }
@@ -106,12 +107,22 @@ public class WeatherConveyor implements Runnable, AutoCloseable, Iterable<Task> 
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() throws IOException {
         saveDataBase(dataBase);
     }
 
     @Override
     public Iterator<Task> iterator() {
-        return queueOutbox.iterator();
+        return this;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return !queueOutbox.isEmpty();
+    }
+
+    @Override
+    public Task next() {
+        return queueOutbox.poll();
     }
 }

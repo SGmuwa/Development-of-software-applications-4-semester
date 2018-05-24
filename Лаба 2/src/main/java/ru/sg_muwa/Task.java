@@ -1,6 +1,7 @@
 package ru.sg_muwa;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public class Task {
 
@@ -28,7 +29,7 @@ public class Task {
         return id;
     }
 
-    public Task(Date date, String city) {
+    public Task(LocalDate date, String city) {
         this.id = -1;
         this.isIdSet = false;
         this.weatherPointEditor = new WeatherPoint(new Point(date, city));

@@ -10,7 +10,9 @@ public class TaskGenerator {
         private long countReady = 0;
 	
 	// Конструктор. В него следует передать список городов, которые поддерживаются WeatherConveyer
-	public TaskGenerator(Set<Point> keys){
+	public TaskGenerator(Set<Point> keys) throws IllegalArgumentException {
+	    if(keys.size() < 1)
+	        throw new IllegalArgumentException("keys.size must be more 0!");
 		this.keys = keys;
 	}
 
