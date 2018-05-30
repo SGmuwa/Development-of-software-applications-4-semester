@@ -30,7 +30,10 @@ public class Weather implements Serializable {
     boolean setWeather(Weather weather) {
         if (weatherChange == false) {
             this.weatherChange = true;
-            this.weather = weather.getWeather();
+            if(weather == null)
+                this.weather = null;
+            else
+                this.weather = weather.getWeather();
             return true;
         } else return false;
     }
@@ -39,6 +42,16 @@ public class Weather implements Serializable {
         return weather;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return true;
+        if(obj instanceof Weather)
+            return this.weather.equals(((Weather)obj).weather);
+        if(obj instanceof String)
+            return this.weather.equals((String)obj);
+        else return false;
+    }
 
     private void Builder(String weather) {
         this.weather = weather;

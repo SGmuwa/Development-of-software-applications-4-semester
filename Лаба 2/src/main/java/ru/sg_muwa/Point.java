@@ -13,6 +13,22 @@ public class Point implements Serializable {
         this.date = date;
         this.city = city;
     }
+
+    @Override
+    public boolean equals(Object ex) {
+        if (this == ex) {
+            return true;
+        }
+        if(ex instanceof Point) {
+            return date.equals(((Point)ex).date) && city.equals(((Point)ex).city);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return city.hashCode() + date.hashCode();
+    }
     
     @Override
     public String toString() {

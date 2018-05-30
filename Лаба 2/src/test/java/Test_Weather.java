@@ -4,8 +4,8 @@ import ru.sg_muwa.*;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.logging.Level;
+import static junit.framework.TestCase.*;
 
 import static org.junit.Assert.assertTrue;
 
@@ -160,5 +160,63 @@ public class Test_Weather {
 		}
 		// Если такой пары не существует, то всё работает верно.
 		return true; 
+	}
+
+
+	/**
+	 * Тестирует на то, что данные действительно сохраняются и загружаются верно.
+	 */
+	@Test
+	public void TestLoadSave() throws IOException {
+
+		System.out.println("Началось тестирование сохранения и загрузки конвеера.");
+
+		String FileName = "DELETE.BIN";
+		new File(FileName).delete();
+		WeatherConveyor wc = new WeatherConveyor(FileName);
+		assertEquals("DELETE.BIN не пустой!", 0, wc.GetPoints().size());
+
+		wc.addData(new Point(LocalDate.of(2000, 10, 5), "Moscow"), new Weather("+5"));
+
+		assertTrue("Не правильно добавились первичные данные! wc.GetPoints().size() = " + wc.GetPoints().size(), wc.GetPoints().size() == 1);
+
+		Point buffer = wc.GetPoints().iterator().next();
+		assertEquals(buffer.city, "Moscow");
+		assertEquals(buffer.date, LocalDate.of(2000, 10, 5));
+
+		wc.addData(new Point(LocalDate.of(2000, 10, 5), "Moscow"), new Weather("+9"));
+
+		assertEquals("Слишком много строк левого столбца! Хотя даже файлик не успел закрыться, уже баг...", 1, wc.GetPoints().size());
+
+		wc.close();
+
+		assertTrue("Файл не найден.", new File(FileName).exists());
+
+		long sizeFile = new File(FileName).length();
+
+		wc = new WeatherConveyor(FileName);
+
+		assertEquals("WeatherConveyor не правильный после открытия!", 1, wc.GetPoints().size());
+
+		buffer = new Point(LocalDate.of(2000, 10, 5), "Moscow");
+
+		wc.AddToQueueInbox(new Task(buffer));
+		wc.step();
+		assertEquals("Что-то не совпадает то, что было с тем, что есть.", buffer, wc.pollFromQueueOutbox().weatherPointEditor.point);
+
+		wc.addData(buffer, new Weather("+7"));
+
+		assertEquals("Слишком много строк левого столбца!", 1, wc.GetPoints().size());
+
+		wc.close();
+
+		new WeatherConveyor(FileName).close();
+
+		assertEquals("Файл весит не столько, сколько нужно! Ожидалось " + sizeFile + " а  есть " + new File(FileName).length(), sizeFile, new File(FileName).length());
+
+		System.out.println("Тестирование на сохранение и загрузку успешно завершено. Удаление временных файлов.");
+
+		assertTrue("Не удалось удалить конечный файл.", new File(FileName).delete());
+		assertFalse("Удалось удалить конечный файл второй раз подрят.", new File(FileName).delete());
 	}
 }
