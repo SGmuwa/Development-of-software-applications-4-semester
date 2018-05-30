@@ -1,6 +1,7 @@
-package ru.sg_muwa;
+package ru.sg_muwa.WeatherConveyor;
 
-import java.util.Date;
+import ru.sg_muwa.Point.Point;
+
 import java.util.Random;
 import java.util.Set;
 // Класс для генерации задач.

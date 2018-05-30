@@ -1,10 +1,12 @@
-package ru.sg_muwa;
+package ru.sg_muwa.WeatherConveyor;
+
+import ru.sg_muwa.Point.Point;
+import ru.sg_muwa.Weather.Weather;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.function.Consumer;
 
 public class WeatherConveyor implements Runnable, AutoCloseable, Iterable<Task>, Iterator<Task> {
 

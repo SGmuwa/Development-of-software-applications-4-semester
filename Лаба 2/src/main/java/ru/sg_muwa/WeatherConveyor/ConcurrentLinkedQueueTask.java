@@ -1,4 +1,4 @@
-package ru.sg_muwa;
+package ru.sg_muwa.WeatherConveyor;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 

@@ -1,4 +1,7 @@
-package ru.sg_muwa;
+package ru.sg_muwa.WeatherConveyor;
+
+import ru.sg_muwa.Point.Point;
+import ru.sg_muwa.Weather.Weather;
 
 import java.io.Serializable;
 

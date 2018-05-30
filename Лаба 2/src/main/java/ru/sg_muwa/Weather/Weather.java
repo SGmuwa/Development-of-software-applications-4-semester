@@ -1,4 +1,4 @@
-package ru.sg_muwa;
+package ru.sg_muwa.Weather;
 
 import java.io.Serializable;
 
@@ -27,7 +27,7 @@ public class Weather implements Serializable {
         } else return false;
     }
 
-    boolean setWeather(Weather weather) {
+    public boolean setWeather(Weather weather) {
         if (weatherChange == false) {
             this.weatherChange = true;
             if(weather == null)
