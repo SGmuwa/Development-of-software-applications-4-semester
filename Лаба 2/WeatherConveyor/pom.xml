@@ -5,22 +5,31 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.sg_muwa</groupId>
-    <artifactId>Lab2</artifactId>
+    <artifactId>ru.sg_muwa.WeatherConveyor</artifactId>
     <version>0.1</version>
+    <packaging>jar</packaging>
 
+    <!--<parent>
+        <groupId>ru.sg_muwa</groupId>
+        <artifactId>ru.sg_muwa.pom</artifactId>
+        <version>0.1</version>
+    </parent>-->
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>ru.sg_muwa.Point</groupId>
-            <artifactId>Lab2</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
+            <groupId>ru.sg_muwa</groupId>
+            <artifactId>ru.sg_muwa.Point</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.sg_muwa</groupId>
+            <artifactId>ru.sg_muwa.Weather</artifactId>
+            <version>0.1</version>
         </dependency>
     </dependencies>
 
