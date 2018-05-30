@@ -6,7 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Lab2" />
+        <module name="ru.sg_muwa.Point" />
+        <module name="ru.sg_muwa.Weather" />
+        <module name="ru.sg_muwa.WeatherConveyor" />
       </profile>
     </annotationProcessing>
   </component>

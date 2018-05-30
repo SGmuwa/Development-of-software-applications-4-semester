@@ -5,20 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.sg_muwa</groupId>
-    <artifactId>ru.sg_muwa.pom</artifactId>
+    <artifactId>ru.sg_muwa.WeatherConveyor</artifactId>
     <version>0.1</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
-    <modules>
-        <module>Point</module>
-        <module>Weather</module>
-        <module>WeatherConveyor</module>
-    </modules>
-
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
+    <!--<parent>
+        <groupId>ru.sg_muwa</groupId>
+        <artifactId>ru.sg_muwa.pom</artifactId>
+        <version>0.1</version>
+    </parent>-->
 
     <dependencies>
         <dependency>
@@ -30,20 +25,17 @@
             <groupId>ru.sg_muwa</groupId>
             <artifactId>ru.sg_muwa.Point</artifactId>
             <version>0.1</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>ru.sg_muwa</groupId>
             <artifactId>ru.sg_muwa.Weather</artifactId>
             <version>0.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>ru.sg_muwa</groupId>
-            <artifactId>ru.sg_muwa.WeatherConveyor</artifactId>
-            <version>0.1</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 
 </project>

@@ -1,5 +1,10 @@
 import org.junit.Test;
-import ru.sg_muwa.*;
+import ru.sg_muwa.Point.Point;
+import ru.sg_muwa.Weather.Weather;
+import ru.sg_muwa.WeatherConveyor.Logger;
+import ru.sg_muwa.WeatherConveyor.Task;
+import ru.sg_muwa.WeatherConveyor.TaskGenerator;
+import ru.sg_muwa.WeatherConveyor.WeatherConveyor;
 
 import java.io.File;
 import java.io.IOException;

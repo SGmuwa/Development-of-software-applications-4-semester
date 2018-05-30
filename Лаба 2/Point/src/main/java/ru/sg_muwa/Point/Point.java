@@ -1,4 +1,4 @@
-package ru.sg_muwa;
+package ru.sg_muwa.Point;
 
 import java.io.Serializable;
 import java.time.LocalDate;
