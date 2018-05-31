@@ -8,7 +8,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 
-public class Logger_test {
+public class Test_Logger {
 
     @Test
     public void startTestLogger() {
