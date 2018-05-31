@@ -31,6 +31,11 @@
             <artifactId>ru.sg_muwa.Weather</artifactId>
             <version>0.1</version>
         </dependency>
+        <dependency>
+            <groupId>ru.sg_muwa</groupId>
+            <artifactId>ru.sg_muwa.Logger</artifactId>
+            <version>0.1</version>
+        </dependency>
     </dependencies>
 
     <properties>

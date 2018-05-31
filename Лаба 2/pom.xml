@@ -13,6 +13,7 @@
         <module>Point</module>
         <module>Weather</module>
         <module>WeatherConveyor</module>
+        <module>Logger</module>
     </modules>
 
     <properties>
